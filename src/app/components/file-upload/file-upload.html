@@ -1,0 +1,12 @@
+<h2>Knowledge Base Files Upload</h2>
+
+<input type="file" (change)="onFileSelected($event)" multiple accept=".txt" />
+
+<ul>
+  @for (file of files; track $index) {
+    <li>
+      {{ file }}
+      <button type="button" (click)="removeFile($index)">Delete</button>
+    </li>
+  }
+</ul>
