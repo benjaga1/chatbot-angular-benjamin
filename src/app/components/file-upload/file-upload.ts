@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-file-upload',
-  imports: [],
+  imports: [MatIcon],
   templateUrl: './file-upload.html',
   styleUrl: './file-upload.css',
 })

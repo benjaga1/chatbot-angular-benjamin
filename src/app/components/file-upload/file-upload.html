@@ -1,12 +1,19 @@
 <h2>Knowledge Base Files Upload</h2>
 
-<input type="file" (change)="onFileSelected($event)" multiple accept=".txt" />
+<div class="file-input-wrapper">
+  <label class="custom-file-btn">
+    <mat-icon class="file-icon">attach_file</mat-icon>
+    Choose Files
+    <input type="file" (change)="onFileSelected($event)" multiple accept=".txt"
+    />
+  </label>
+</div>
 
 <ul>
   @for (file of files; track $index) {
     <li>
       {{ file }}
-      <button type="button" (click)="removeFile($index)">Delete</button>
+      <button type="button" (click)="removeFile($index)"><mat-icon>delete</mat-icon></button>
     </li>
   }
 </ul>

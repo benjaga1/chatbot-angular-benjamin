@@ -8,5 +8,7 @@
   }
 </div>
 
-<input type="text" [(ngModel)]="userInput" placeholder="Type a message" />
-<button (click)="sendMessage()">Send</button>
+<div class="chat-input-wrapper">
+  <input type="text" [(ngModel)]="userInput" (keyup.enter)="sendMessage()" placeholder="Type a message" />
+  <button (click)="sendMessage()">Send</button>
+</div>
