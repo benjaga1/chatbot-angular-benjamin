@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Message {
@@ -18,6 +18,7 @@ export class ChatSimulator {
   userInput: string = '';
 
   constructor(private cdr: ChangeDetectorRef) {}
+  @ViewChild('chatWindow') chatWindow!: ElementRef;
 
   sendMessage() {
     if (!this.userInput.trim()) return;
@@ -26,6 +27,9 @@ export class ChatSimulator {
       ...this.messages,
       { text: this.userInput, sender: 'user' }
     ];
+
+    this.cdr.detectChanges();
+    this.scrollToBottom();
 
     const userMsg = this.userInput;
     this.userInput = '';
@@ -37,7 +41,15 @@ export class ChatSimulator {
       });
 
       this.cdr.detectChanges();
+      this.scrollToBottom();
     }, 1000);
+  }
+
+  scrollToBottom() {
+    try {
+      this.chatWindow.nativeElement.scrollTop =
+        this.chatWindow.nativeElement.scrollHeight;
+    } catch (err) {}
   }
 
   generateBotReply(msg: string): string {

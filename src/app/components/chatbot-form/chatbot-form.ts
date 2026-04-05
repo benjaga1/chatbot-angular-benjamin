@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ReactiveFormsModule} from '@angular/forms';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-chatbot-form',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, MatSnackBarModule],
   templateUrl: './chatbot-form.html',
   styleUrl: './chatbot-form.css',
 })
@@ -11,7 +12,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule} from '@angular
 export class ChatbotForm implements OnInit {
   chatbotForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.chatbotForm = this.fb.group({
@@ -28,7 +29,13 @@ export class ChatbotForm implements OnInit {
 
     const formData = this.chatbotForm.value;
     localStorage.setItem('chatbotConfig', JSON.stringify(formData));
-    console.log('Chatbot saved!');
+
+    this.snackBar.open('Chatbot successfully saved!', 'Close', {
+      duration: 2500,
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+      panelClass: ['success-snackbar']
+    });
   }
 
   loadFromLocalStorage() {

@@ -1,6 +1,6 @@
 <h2>Chat Simulator</h2>
 
-<div class="chat-window">
+<div class="chat-window" #chatWindow>
   @for (msg of messages; track $index) {
     <div [class.user]="msg.sender === 'user'" [class.bot]="msg.sender === 'bot'">
       <strong>{{ msg.sender }}:</strong> {{ msg.text }}

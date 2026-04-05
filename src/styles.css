@@ -221,3 +221,8 @@ li {
   letter-spacing: 0.5px;
   opacity: 0.9;
 }
+
+.success-snackbar .mat-mdc-button {
+  color: var(--main) !important;
+  font-weight: 500;
+}
