@@ -17,8 +17,12 @@ export class FileUpload implements OnInit{
     }
   }
 
-  onFileSelected(event: any) {
-    const selectedFiles: FileList = event.target.files;
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files) return;
+
+    const selectedFiles: FileList = input.files;
 
     for (let i = 0; i < selectedFiles.length; i++) {
       const file = selectedFiles[i];
@@ -28,7 +32,7 @@ export class FileUpload implements OnInit{
     }
 
     this.saveToLocalStorage();
-    event.target.value = '';
+    input.value = '';
   }
 
   removeFile(index: number) {

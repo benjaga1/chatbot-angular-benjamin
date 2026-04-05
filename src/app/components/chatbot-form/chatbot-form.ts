@@ -16,7 +16,7 @@ export class ChatbotForm implements OnInit {
 
   ngOnInit(): void {
     this.chatbotForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.pattern(/.*\S.*/)]],
       personality: [0.5],
       description: ['']
     });
@@ -27,7 +27,12 @@ export class ChatbotForm implements OnInit {
   onSubmit() {
     if (this.chatbotForm.invalid) return;
 
-    const formData = this.chatbotForm.value;
+    const formData = {
+      ...this.chatbotForm.value,
+      name: this.chatbotForm.value.name.trim(),
+      description: this.chatbotForm.value.description?.trim()
+    };
+
     localStorage.setItem('chatbotConfig', JSON.stringify(formData));
 
     this.snackBar.open('Chatbot successfully saved!', 'Close', {
