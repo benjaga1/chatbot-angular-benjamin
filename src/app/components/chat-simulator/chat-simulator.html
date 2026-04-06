@@ -6,6 +6,13 @@
       <strong>{{ msg.sender }}:</strong> {{ msg.text }}
     </div>
   }
+  @if (isBotTyping) {
+    <div class="bot typing">
+      <span class="dots">
+        <span>.</span><span>.</span><span>.</span>
+      </span>
+    </div>
+  }
 </div>
 
 <div class="chat-input-wrapper">

@@ -16,6 +16,7 @@ interface Message {
 export class ChatSimulator {
   messages: Message[] = [];
   userInput: string = '';
+  isBotTyping: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef) {}
   @ViewChild('chatWindow') chatWindow!: ElementRef;
@@ -34,7 +35,11 @@ export class ChatSimulator {
     const userMsg = this.userInput;
     this.userInput = '';
 
+    this.isBotTyping = true;
+
     setTimeout(() => {
+      this.isBotTyping = false;
+
       this.messages.push({
         text: this.generateBotReply(userMsg),
         sender: 'bot'
