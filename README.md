@@ -8,6 +8,8 @@ This is a small Angular application created as part of a frontend assignment. Th
 2. Upload a knowledge base (.txt) file list, display uploaded files, and optionally delete files.  
 3. Test the chatbot with a simulated chat interface that shows user and bot messages, with bot responses delayed.
 
+> **Reminder:** Chatbot configurations and uploaded files are saved in local storage to persist data across sessions without a backend.
+
 ## Real-Time Chat Implementation Suggestions
 
 1. **What approach you'd use (WebSocket, SSE, long polling, etc.)?**  
