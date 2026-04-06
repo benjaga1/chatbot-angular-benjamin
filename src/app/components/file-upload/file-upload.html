@@ -9,11 +9,17 @@
   </label>
 </div>
 
-<ul>
-  @for (file of files; track $index) {
-    <li>
-      {{ file }}
-      <button type="button" (click)="removeFile($index)"><mat-icon>delete</mat-icon></button>
-    </li>
-  }
-</ul>
+@if (files.length === 0) {
+  <p class="no-files-p">No files uploaded yet</p>
+} @else {
+  <ul>
+    @for (file of files; track $index) {
+      <li>
+        {{ file }}
+        <button type="button" (click)="removeFile($index)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </li>
+    }
+  </ul>
+}
